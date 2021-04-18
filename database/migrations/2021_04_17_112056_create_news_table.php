@@ -15,7 +15,7 @@ class CreateNewsTable extends Migration
     {
         Schema::create('news', function (Blueprint $table) {
             $table->id();
-            $table->string('mongo_id', 100);
+            $table->string('mongo_id', 100)->nullable();
             $table->string('title', 300);
             $table->string('img_src', 300);
             $table->string('news_url', 300);

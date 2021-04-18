@@ -5,10 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
+class news_portal extends Model
 {
     use HasFactory;
-
     /**
      * The attributes that are mass assignable.
      *
@@ -16,7 +15,8 @@ class Category extends Model
      */
     protected $fillable = [
         'title',
-        'slug'
+        'slug',
+        'is_active',
     ];
 
     /**
@@ -24,5 +24,5 @@ class Category extends Model
      *
      * @var string
      */
-    protected $table = 'category';
+    protected $table = 'news_portals';
 }
