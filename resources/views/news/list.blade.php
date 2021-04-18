@@ -7,7 +7,7 @@
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     @if (session()->has('message'))
-        <div id="alert" class="text-white px-6 py-4 border-0 rounded relative mb-4 bg-green-500">
+        <div id="alert" class="text-white px-6 py-4 border-0 rounded relative mb-4 bg-green-500 "  style="margin: 10px;">
             <span class="inline-block align-middle mr-8">
                 {{ session('message') }}
             </span>

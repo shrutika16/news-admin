@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Category;
+use App\Models\news_portal;
 
-class CategoryController extends Controller
+class NewsPortalController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::get();
-        return view('category.list', compact('categories'));
+        $news_portals = news_portal::get();
+        return view('news-portal.list', compact('news_portals'));
     }
 
     /**
@@ -25,7 +25,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('category.create');
+        return view('news-portal.create');
     }
 
     /**
@@ -37,16 +37,16 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => ['required', 'unique:category'],
+            'title' => ['required', 'unique:news_portals'],
             'slug' => ['required'],
         ]);
 
-        $category = new Category;
-        $category->title = $request->title;
-        $category->slug = $request->slug;
-        $category->save();
+        $newsPortal = new news_portal;
+        $newsPortal->title = $request->title;
+        $newsPortal->slug = $request->slug;
+        $newsPortal->save();
 
-        return redirect('category')->with('message', 'Category added successfully');
+        return redirect('news_portal')->with('message', 'News Portal added successfully');
     }
 
     /**
@@ -57,7 +57,7 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-
+        //
     }
 
     /**
@@ -68,8 +68,8 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $category = Category::find($id);
-        return view('category.edit', compact('category'));
+        $newsPortal = news_portal::find($id);
+        return view('news-portal.edit', compact('newsPortal'));
     }
 
     /**
@@ -86,12 +86,12 @@ class CategoryController extends Controller
             'slug' => ['required'],
         ]);
 
-        $category = Category::find($id);
-        $category->title = $request->title;
-        $category->slug = $request->slug;
-        $category->save();
+        $newsPortal = news_portal::find($id);
+        $newsPortal->title = $request->title;
+        $newsPortal->slug = $request->slug;
+        $newsPortal->save();
 
-        return redirect('category')->with('message', 'Category updated successfully');
+        return redirect('news_portal')->with('message', 'News Portal updated successfully');
     }
 
     /**
@@ -103,15 +103,14 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         // delete
-        $category = Category::find($id);
+        $newsPortal = news_portal::find($id);
 
-        $news = $category->news->toArray();
-        if (!empty($news)) {
-            return redirect('category')->with('error', "Can't delete category! news are available for this category");
+        $news = $newsPortal->news->toArray();
+        if(!empty($news)){
+            return redirect('news_portal')->with('error', "Can't delete news portal! news are available for this portal");
         }
+        $newsPortal->delete();
 
-        $category->delete();
-
-        return redirect('category')->with('message', 'Category deleted successfully');
+        return redirect('news_portal')->with('message', 'News Portal deleted successfully');
     }
 }

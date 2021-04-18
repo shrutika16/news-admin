@@ -25,4 +25,12 @@ class Category extends Model
      * @var string
      */
     protected $table = 'category';
+
+    /**
+     * Get the news associated with the category.
+     */
+    public function news()
+    {
+        return $this->hasMany(news::class, 'news_portal_id', 'id');
+    }
 }

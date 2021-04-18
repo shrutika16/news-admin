@@ -25,4 +25,13 @@ class news_portal extends Model
      * @var string
      */
     protected $table = 'news_portals';
+
+    /**
+     * Get the news associated with the news portal.
+     */
+    public function news()
+    {
+        return $this->hasMany(news::class, 'news_portal_id' , 'id');
+    }
+
 }

@@ -1,13 +1,13 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Category List') }}
+            {{ __('News Portal List') }}
         </h2>
     </x-slot>
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     @if (session()->has('message'))
-        <div id="alert" class="text-white px-6 py-4 border-0 rounded relative mb-4 bg-green-500"  style="margin: 10px;">
+        <div id="alert" class="text-white px-6 py-4 border-0 rounded relative mb-4 bg-green-500" style="margin: 10px;">
             <span class="inline-block align-middle mr-8">
                 {{ session('message') }}
             </span>
@@ -27,9 +27,9 @@
         </div>
     @endif
     <div class="py-5">
-    <a href="{{ route('category.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-10">Create New Category</a>
+    <a href="{{ route('news_portal.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-10">Create New Category</a>
     </div>
-    @if (count($categories)>0)
+    @if (count($news_portals)>0)
         <div class="py-10">
             <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
                 <table class="min-w-full leading-normal">
@@ -50,18 +50,18 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($categories as $category)
+                        @foreach($news_portals as $news_portal)
                         <tr>
                             <td class="px-5 py-5 bg-white text-center  text-sm ">
-                                {{ $category->title }}
+                                {{ $news_portal->title }}
                             </td>
                             <td class="px-5 py-5  bg-white  text-center   text-sm ">
-                                {{ $category->slug }}
+                                {{ $news_portal->slug }}
                             </td>
                             <td class="px-5 py-5 bg-white text-sm  text-center ">
                                 <div class="inline-block whitespace-no-wrap">
-                                    <a href="{{ route('category.edit',  $category->id) }}" class="float-left bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Edit</a>
-                                    <form action="{{ route('category.destroy',  $category->id) }}" method="POST" class="float-left">
+                                    <a href="{{ route('news_portal.edit',  $news_portal->id) }}" class="float-left bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Edit</a>
+                                    <form action="{{ route('news_portal.destroy',  $news_portal->id) }}" method="POST" class="float-left">
                                         {{ method_field('DELETE') }}
                                         @csrf
                                         <button

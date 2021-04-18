@@ -22,6 +22,11 @@
                     </x-jet-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-nav-link href="{{ route('news_portal.index') }}" :active="request()->routeIs('news_portal.index')">
+                        {{ __('News Portal') }}
+                    </x-jet-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('news.index') }}" :active="request()->routeIs('news.index')">
                         {{ __('News') }}
                     </x-jet-nav-link>
